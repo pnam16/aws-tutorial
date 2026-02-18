@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS SAA-C03 Quiz App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <h1 class="title">
+          <span class="icon">☁️</span>
+          AWS SAA-C03 Quiz
+        </h1>
+        <div class="progress-info">
+          <div class="score-display">
+            <span class="score-label">Điểm:</span>
+            <span class="score-value" id="score">0</span>
+            <span class="score-total"
+              >/ <span id="totalQuestions">0</span></span
+            >
+          </div>
+          <div class="question-counter">
+            Câu <span id="currentQuestion">1</span> /
+            <span id="totalQuestionsCounter">0</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Question Card -->
+        <div class="question-card" id="questionCard">
+          <div class="question-header">
+            <span class="question-number" id="questionNumber">Câu 1</span>
+          </div>
+          <div class="question-text" id="questionText">
+            Loading questions...
+          </div>
+
+          <!-- Answer Options -->
+          <div class="options-container" id="optionsContainer">
+            <!-- Options will be dynamically inserted here -->
+          </div>
+
+          <!-- Explanation Panel -->
+          <div class="explanation-panel hidden" id="explanationPanel">
+            <div class="explanation-header">
+              <span class="explanation-icon">💡</span>
+              <h3>Giải thích chi tiết</h3>
+            </div>
+            <div class="explanation-content" id="explanationContent">
+              <!-- Explanation will be inserted here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="navigation-controls">
+          <button class="nav-btn secondary" id="prevBtn" disabled>
+            <span>←</span> Câu trước
+          </button>
+          <button class="nav-btn primary" id="nextBtn">
+            Câu tiếp <span>→</span>
+          </button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="action-btn" id="restartBtn">
+            <span>🔄</span> Làm lại
+          </button>
+          <button class="action-btn" id="filterBtn">
+            <span>🔍</span> Lọc câu hỏi
+          </button>
+        </div>
+      </main>
+
+      <!-- Filter Modal -->
+      <div class="modal hidden" id="filterModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Chọn phạm vi câu hỏi</h2>
+            <button class="close-btn" id="closeModal">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="filter-options" id="filterOptions">
+              <!-- Filter options will be dynamically inserted -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading Overlay -->
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Đang tải câu hỏi...</p>
+      </div>
+    </div>
+
+    <script src="parser.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
