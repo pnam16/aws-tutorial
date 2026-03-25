@@ -40,8 +40,8 @@ Tài liệu được biên soạn chi tiết với giải thích bằng tiếng 
 
 **Phân tích**:
 
-1.  **Storage Resilience**: Chuyển Images từ EBS (Local/Single Instance) sang **EFS** (Shared File System, Multi-AZ). (Option C). Hoặc S3 (Option A). Tuy nhiên CMS thường cần file system -> EFS (C) là lựa chọn tự nhiên hơn cho việc "Lift & Shift" CMS scaling.
-2.  **App Resilience**: Dùng **Auto Scaling Group (ASG)** + **ALB** + **CloudFront** (Content Delivery) để improve performance (caching) và resilience (scaling). Option E đầy đủ hơn D (vì CloudFront tốt cho performance CMS hơn Global Accelerator trong case này - caching images).
+1. **Storage Resilience**: Chuyển Images từ EBS (Local/Single Instance) sang **EFS** (Shared File System, Multi-AZ). (Option C). Hoặc S3 (Option A). Tuy nhiên CMS thường cần file system -> EFS (C) là lựa chọn tự nhiên hơn cho việc "Lift & Shift" CMS scaling.
+2. **App Resilience**: Dùng **Auto Scaling Group (ASG)** + **ALB** + **CloudFront** (Content Delivery) để improve performance (caching) và resilience (scaling). Option E đầy đủ hơn D (vì CloudFront tốt cho performance CMS hơn Global Accelerator trong case này - caching images).
 
 **Đáp án đúng**: **C, E** (EFS cho shared storage, ASG+ALB+CloudFront cho App scaling & delivery).
 
@@ -542,8 +542,8 @@ Candidate: **A, B, C, F**.
 **Giải thích**:
 
 - Scaling EKS có 2 levels:
-  1.  **Pod Scaling**: Dùng **HPA** (cần Metrics Server) để tăng giảm số lượng Pods dựa trên CPU/RAM. (Option B).
-  2.  **Node Scaling**: Dùng **Cluster Autoscaler** (hoặc Karpenter) để tăng giảm số lượng Nodes khi Pods pending/idle. (Option C).
+  1. **Pod Scaling**: Dùng **HPA** (cần Metrics Server) để tăng giảm số lượng Pods dựa trên CPU/RAM. (Option B).
+  2. **Node Scaling**: Dùng **Cluster Autoscaler** (hoặc Karpenter) để tăng giảm số lượng Nodes khi Pods pending/idle. (Option C).
 
 **Đáp án đúng**: **B, C**
 
@@ -711,9 +711,9 @@ Candidate: **A, B, C, F**.
 
 **Quy trình đúng**:
 
-1.  **D**: Request Wildcard Cert (`*.api.com`) in ACM (Region matches API GW).
-2.  **F**: Create "Custom Domain Name" in API Gateway (`*.api.com` or specific).
-3.  **A**: Route 53 Wildcard Record (`*.api.com`) point to API GW Domain. (Map customer ID via path or logic).
+1. **D**: Request Wildcard Cert (`*.api.com`) in ACM (Region matches API GW).
+2. **F**: Create "Custom Domain Name" in API Gateway (`*.api.com` or specific).
+3. **A**: Route 53 Wildcard Record (`*.api.com`) point to API GW Domain. (Map customer ID via path or logic).
     - Wait, requirement "Individual URLs". `cust1.domain.com`.
     - API Gateway support **Wildcard Custom Domain Names**.
     - Config: `*.example.com` -> API Gateway. App logic parse Host header.
@@ -932,9 +932,9 @@ However, "Operationally efficient" -> Managed migration to Aurora is often the i
 
 **Tổ hợp đúng**:
 
-1.  **Serverless Backend**: A (Lambda/API GW).
-2.  **Authentication**: C (Cognito User Pool handles sign-up/sign-in/groups).
-3.  **Frontend**: F (S3 Static Hosting + CloudFront). (Amplify E is also good, but S3+CF is classic fundamental block).
+1. **Serverless Backend**: A (Lambda/API GW).
+2. **Authentication**: C (Cognito User Pool handles sign-up/sign-in/groups).
+3. **Frontend**: F (S3 Static Hosting + CloudFront). (Amplify E is also good, but S3+CF is classic fundamental block).
     - Let's check "Choose three".
     - A: Backend logic.
     - C: Auth.
@@ -975,8 +975,8 @@ However, "Operationally efficient" -> Managed migration to Aurora is often the i
 
 **Quy trình**:
 
-1.  Đưa các account vào cùng 1 Organization (Option E: Account có SP tạo Org hoặc join Org).
-2.  Bật "Discount Sharing" ở Management Account (Option A).
+1. Đưa các account vào cùng 1 Organization (Option E: Account có SP tạo Org hoặc join Org).
+2. Bật "Discount Sharing" ở Management Account (Option A).
 
 **Đáp án đúng**: **A, E**
 

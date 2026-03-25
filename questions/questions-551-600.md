@@ -186,10 +186,10 @@ Tài liệu được biên soạn chi tiết với giải thích bằng tiếng 
 
 **Quy trình**:
 
-1.  Vào Management Account (Payer Account).
-2.  Vào Billing Dashboard -> Cost Allocation Tags.
-3.  **Activate** các "User-Defined Tags" mà member accounts đã dùng (Option E).
-4.  Sau khi activate, tag sẽ hiện trong Cost Explorer/Billing Reports để filter (Option B concept).
+1. Vào Management Account (Payer Account).
+2. Vào Billing Dashboard -> Cost Allocation Tags.
+3. **Activate** các "User-Defined Tags" mà member accounts đã dùng (Option E).
+4. Sau khi activate, tag sẽ hiện trong Cost Explorer/Billing Reports để filter (Option B concept).
 
 **Đáp án đúng**: **B, E** (Logic: Activate tag in Management Account -> Use tag in Billing Console report).
 
@@ -257,8 +257,8 @@ Tài liệu được biên soạn chi tiết với giải thích bằng tiếng 
 
 - Giải pháp tiêu chuẩn cho DynamoDB Private Access là **Gateway Endpoint**.
 - Steps:
-  1.  Tạo **Gateway Endpoint** (Option B).
-  2.  Add **Route** to Route Table (Target: `vpce-xxxxxx`) (Option A). Gateway Endpoint yêu cầu Route table modification (thường làm tự động khi tạo Endpoint nếu chọn Route Table).
+  1. Tạo **Gateway Endpoint** (Option B).
+  2. Add **Route** to Route Table (Target: `vpce-xxxxxx`) (Option A). Gateway Endpoint yêu cầu Route table modification (thường làm tự động khi tạo Endpoint nếu chọn Route Table).
 
 **Đáp án đúng**: **A, B**
 

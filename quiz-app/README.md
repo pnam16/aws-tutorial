@@ -46,7 +46,7 @@ npx serve
 
 ## 📝 Cấu trúc thư mục
 
-```
+```text
 quiz-app/
 ├── index.html      # Giao diện chính
 ├── style.css       # Styling
@@ -57,12 +57,12 @@ quiz-app/
 
 ## 🐛 Khắc phục sự cố
 
-**Lỗi: "Loading questions..." không biến mất**
+### Lỗi: "Loading questions..." không biến mất
 
 - Nguyên nhân: CORS restriction khi mở file:// trực tiếp
 - Giải pháp: Chạy qua web server (xem hướng dẫn trên)
 
-**Câu hỏi không hiển thị**
+### Câu hỏi không hiển thị
 
 - Kiểm tra đường dẫn đến thư mục `/questions`
 - Đảm bảo các file markdown tồn tại

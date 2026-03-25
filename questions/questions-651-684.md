@@ -468,8 +468,8 @@ Tài liệu được biên soạn chi tiết với giải thích bằng tiếng 
     - Keyword "Optimize cost": Provisioned (tuned) luôn rẻ hơn On-demand cho known workload. Đặc biệt nếu tắt được (giảm về 1).
     - Tuy nhiên, nếu không có automation script được nhắc đến, thì On-Demand là "Solution" đỡ overhead.
     - Nhưng Cost là ưu tiên. Provisioned rẻ hơn đáng kể cho high throughput predictable.
-    - Dù vậy, với tần suất 4h/168h (2.3% active time). Nếu dùng Provisioned + Auto Scaling (scale to zero is impossible, min 1). Cost idle 164h _ 1 unit _ price. Vs Cost active 4h _ HighLoad _ Price.
-    - On-demand: 4h _ HighLoad _ HighPrice.
+    - Dù vậy, với tần suất 4h/168h (2.3% active time). Nếu dùng Provisioned + Auto Scaling (scale to zero is impossible, min 1). Cost idle 164h × 1 unit × price. Vs Cost active 4h × HighLoad × Price.
+    - On-demand: 4h × HighLoad × HighPrice.
     - Thường thì **Provisioned** với strategy scaling/schedule là đáp án cho "Predictable/Known workload" để rẻ nhất.
 - **C/D. Reserved Capacity.**
   - _Tại sao sai?_ Commitment 1 năm/3 năm liên tục. Workload chỉ chạy 4h/tuần -> Lãng phí capacity mua 24/7.
