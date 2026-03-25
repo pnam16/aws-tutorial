@@ -331,7 +331,7 @@ Tuy nhiên, đề bài nói "Administrator... uses an SFTP client".
 **Giải thích chi tiết**:
 
 - **Tính toán băng thông**: 500 Mbps lý thuyết.
-  - 700 TB = 700 _ 1024 _ 1024 MB ~= 734,000,000 MB.
+  - 700 TB = 700 × 1024 × 1024 MB ~= 734,000,000 MB.
   - 500 Mbps = 62.5 MB/s.
   - Thời gian = 734,000,000 / 62.5 = 11,744,000 giây ~= 135 ngày. -> **Không kịp deadline 1 tháng**.
   - Do đó B, C, D (Transfer qua mạng 500Mbps) đều Fail.

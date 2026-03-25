@@ -475,10 +475,10 @@ Okay:
 **Giải thích chi tiết**:
 
 - Quy trình chuẩn:
-  1.  Take snapshot of unencrypted DB.
-  2.  **Copy snapshot** và tích chọn **Encrypt** (chọn KMS Key) trong quá trình copy.
-  3.  **Restore** DB instance mới từ Encrypted Snapshot.
-  4.  Switch traffic sang DB mới.
+  1. Take snapshot of unencrypted DB.
+  2. **Copy snapshot** và tích chọn **Encrypt** (chọn KMS Key) trong quá trình copy.
+  3. **Restore** DB instance mới từ Encrypted Snapshot.
+  4. Switch traffic sang DB mới.
 - Đáp án **A** mô tả đúng quy trình này (Replace existing DB instance - ý là thay thế về mặt application connection hoặc delete cũ dùng mới).
 
 ---

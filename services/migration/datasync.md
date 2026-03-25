@@ -9,11 +9,11 @@ AWS DataSync là dịch vụ truyền dữ liệu trực tuyến (online data tr
 
 ## 2. Kiến trúc (Architecture)
 
-1.  **DataSync Agent**:
+1. **DataSync Agent**:
     - Máy ảo (VM) cài đặt trên server on-premise của bạn (VMware, Hyper-V).
     - Kết nối với NAS/File Server qua NFS/SMB.
     - Truyền dữ liệu lên AWS qua Internet hoặc Direct Connect.
-2.  **AWS Service**:
+2. **AWS Service**:
     - Tiếp nhận dữ liệu và ghi vào S3, EFS, FSx.
 
 ## 3. Các tính năng chính (Key Features)

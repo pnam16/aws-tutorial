@@ -583,10 +583,10 @@
 
 **Giải thích chi tiết**:
 
-- **B - ĐÚNG**: 
-    - **AWS DataSync**: Chuyên dụng để truyền tải data lớn (TB/PB) từ on-premise SAN/NAS lên S3/EFS với tốc độ cao (tối ưu hóa network protocol).
-    - **AWS Direct Connect**: Cung cấp đường truyền riêng (private), băng thông ổn định và bảo mật (secure transfer) thay vì đi qua Public Internet không ổn định.
-    - Đây là giải pháp "Most reliable" cho 10TB/day data sensitive.
+- **B - ĐÚNG**:
+  - **AWS DataSync**: Chuyên dụng để truyền tải data lớn (TB/PB) từ on-premise SAN/NAS lên S3/EFS với tốc độ cao (tối ưu hóa network protocol).
+  - **AWS Direct Connect**: Cung cấp đường truyền riêng (private), băng thông ổn định và bảo mật (secure transfer) thay vì đi qua Public Internet không ổn định.
+  - Đây là giải pháp "Most reliable" cho 10TB/day data sensitive.
 - **A - SAI**: Public Internet không guaranteed reliability và performance cho 10TB mỗi ngày (độ trễ, packet loss).
 - **C, D - SAI**: **AWS DMS** dùng để migrate Database (SQL/NoSQL/DW), không tối ưu cho việc transfer file JSON từ SAN filesystem.
 
@@ -608,9 +608,9 @@
 **Giải thích chi tiết**:
 
 - **C - ĐÚNG**: Giải pháp "Serverless" toàn diện (Least operational overhead):
-    - **API Gateway**: Làm API Endpoint nhận request (thay vì quản lý EC2).
-    - **Kinesis Data Streams (KDS)**: Ingestion buffer. API Gateway có thể integration trực tiếp với KDS (Service Proxy).
-    - **Kinesis Data Firehose (KDF)**: Delivery stream, hỗ trợ gọi **Lambda** để transform data in-flight và lưu xuống **S3**.
+  - **API Gateway**: Làm API Endpoint nhận request (thay vì quản lý EC2).
+  - **Kinesis Data Streams (KDS)**: Ingestion buffer. API Gateway có thể integration trực tiếp với KDS (Service Proxy).
+  - **Kinesis Data Firehose (KDF)**: Delivery stream, hỗ trợ gọi **Lambda** để transform data in-flight và lưu xuống **S3**.
 - **A - SAI**: Dùng EC2 host API tăng overhead quản lý/patching.
 - **B, D - SAI**: **AWS Glue** thường dùng cho batch ETL hoặc Streaming ETL phức tạp (Spark Streaming), nhưng integration "Gateway -> Glue" không direct và straight-forward như Kinesis. Glue cũng có startup latency.
 
@@ -653,8 +653,8 @@
 **Giải thích chi tiết**:
 
 - **A - ĐÚNG**: **On-demand capacity mode** phù hợp hoàn hảo:
-    - "Not used most mornings": Không tốn tiền (pay-per-request).
-    - "Traffic unpredictable" & "Spikes happen very quickly": On-demand đáp ứng ngay lập tức các burst traffic lớn mà không cần chờ Auto Scaling khởi động (vốn có delay).
+  - "Not used most mornings": Không tốn tiền (pay-per-request).
+  - "Traffic unpredictable" & "Spikes happen very quickly": On-demand đáp ứng ngay lập tức các burst traffic lớn mà không cần chờ Auto Scaling khởi động (vốn có delay).
 - **C - SAI**: Provisioned + Auto Scaling: Có độ trễ khi scale up. Nếu spike quá nhanh, request sẽ bị Throttled trước khi capacity kịp tăng. Ngoài ra tốn tiền duy trì provisioned capacity khi không dùng (mornings).
 
 ---
@@ -676,9 +676,9 @@
 
 - **Nguyên tắc**: Để chia sẻ Encrypted AMI, bạn cần chia sẻ 2 thứ: (1) Quyền truy cập AMI, (2) Quyền sử dụng KMS Key để decrypt snapshot.
 - **B - ĐÚNG**:
-    - `modify-image-attribute (launchPermission)`: Cho phép Account ID của MSP launch instance từ AMI này. (Private Sharing).
-    - `Modify Key Policy`: Cho phép Account ID của MSP thực hiện action `kms:Decrypt`, `kms:CreateGrant`... trên key CMK này.
-    - Đây là cách chuẩn và secure nhất.
+  - `modify-image-attribute (launchPermission)`: Cho phép Account ID của MSP launch instance từ AMI này. (Private Sharing).
+  - `Modify Key Policy`: Cho phép Account ID của MSP thực hiện action `kms:Decrypt`, `kms:CreateGrant`... trên key CMK này.
+  - Đây là cách chuẩn và secure nhất.
 - **A - SAI**: Không được Public Encrypted AMI/Snapshot. Và public AMI là rủi ro bảo mật cực lớn.
 - **D - SAI**: Quy trình Export AMI to S3 (VM Import/Export) phức tạp và thường dùng cho việc move image ra khỏi AWS hoặc cross-cloud, không phải standard way để share giữa 2 AWS accounts.
 
@@ -700,8 +700,8 @@
 **Giải thích chi tiết**:
 
 - **C - ĐÚNG**:
-    - **SQS**: Đảm bảo "loosely coupled" và "job items durably stored". Worker pull job về xử lý.
-    - **Scaling Policy**: Scale dựa trên số lượng message trong queue (metric `ApproximateNumberOfMessagesVisible`) là chiến lược "Scaling based on Backlog" chuẩn nhất cho worker tier.
+  - **SQS**: Đảm bảo "loosely coupled" và "job items durably stored". Worker pull job về xử lý.
+  - **Scaling Policy**: Scale dựa trên số lượng message trong queue (metric `ApproximateNumberOfMessagesVisible`) là chiến lược "Scaling based on Backlog" chuẩn nhất cho worker tier.
 - **A, D - SAI**: **SNS** là model Pub/Sub (Push), không lưu trữ bền vững (not queueing) nếu worker offline hoặc busy. Data có thể bị mất nếu không xử lý kịp. Scaling theo CPU (A) không phản ánh chính xác backlog công việc (ví dụ job nhẹ CPU nhưng nhiều job).
 
 ---
@@ -744,9 +744,9 @@
 **Giải thích chi tiết**:
 
 - **C - ĐÚNG**: **Amazon CloudFront** (CDN) có các Edge Location tại Europe.
-    - Static content: Cache tại Edge (Europe) -> User Europe tải cực nhanh.
-    - Dynamic content: CloudFront dùng **AWS Global Network** backbone để route request về Origin (On-prem US) nhanh hơn và ổn định hơn public internet.
-    - Đây là giải pháp "Immediate" (setup nhanh) và không cần move backend ("remain in US").
+  - Static content: Cache tại Edge (Europe) -> User Europe tải cực nhanh.
+  - Dynamic content: CloudFront dùng **AWS Global Network** backbone để route request về Origin (On-prem US) nhanh hơn và ổn định hơn public internet.
+  - Đây là giải pháp "Immediate" (setup nhanh) và không cần move backend ("remain in US").
 - **A - SAI**: Server vẫn ở US, user Europe vẫn bị latency cao.
 - **D - SAI**: Route 53 chỉ điều hướng DNS request, traffic sau đó vẫn đi xuyên biển (Europe -> US) qua internet public, không giảm latency tải trang.
 
@@ -769,8 +769,8 @@
 
 - **Prod Env (24/7)**: Cần độ ổn định cao nhất -> Dùng **Reserved Instances** (hoặc Savings Plans) để giảm giá so với On-Demand (cam kết 1-3 năm). Không dùng Spot vì rủi ro bị terminate.
 - **Dev/Test Env (8h/day)**: Có automation "stop when not in use".
-    - Nếu mua Reserved Instances: Bạn trả tiền 24/7 (dù stop instance vẫn tính phí reservation theo giờ). Lãng phí 16h/ngày.
-    - Dùng **On-Demand**: Chỉ trả tiền khi Running (8h). Stop 16h = 0$. Rẻ hơn RI trong trường hợp này (8h so với 24h RI effective).
+  - Nếu mua Reserved Instances: Bạn trả tiền 24/7 (dù stop instance vẫn tính phí reservation theo giờ). Lãng phí 16h/ngày.
+  - Dùng **On-Demand**: Chỉ trả tiền khi Running (8h). Stop 16h = 0$. Rẻ hơn RI trong trường hợp này (8h so với 24h RI effective).
 - **Correct**: B.
 
 ---
@@ -833,9 +833,9 @@
 
 - **Vấn đề**: DB Downtime (maintenance/upgrade) -> Mất data.
 - **D - ĐÚNG**: Sử dụng pattern **Decoupling**.
-    - API Gateway -> Lambda 1 -> **SQS** (Buffer).
-    - Lambda 2 (Worker) -> Poll SQS -> Write DB.
-    - Khi DB bảo trì, Lambda worker fail to write -> Message trả về Queue (hoặc DLQ) -> Không mất data. Khi DB online lại, worker tiếp tục xử lý backlog. FIFO đảm bảo thứ tự transaction.
+  - API Gateway -> Lambda 1 -> **SQS** (Buffer).
+  - Lambda 2 (Worker) -> Poll SQS -> Write DB.
+  - Khi DB bảo trì, Lambda worker fail to write -> Message trả về Queue (hoặc DLQ) -> Không mất data. Khi DB online lại, worker tiếp tục xử lý backlog. FIFO đảm bảo thứ tự transaction.
 - **A - SAI**: RDS Proxy giúp manage connection pool và failover nhanh hơn trong Multi-AZ, nhưng nếu DB upgrade (shutdown hẳn hoặc reboot lâu), Proxy cũng không ghi được dữ liệu (chỉ queue connection ở mức độ nhất định và timeout). SQS bền vững hơn cho maintenance window dài.
 - **B - SAI**: Lambda max timeout 15 phút. Upgrade DB có thể lâu hơn -> vẫn mất data.
 
@@ -964,8 +964,8 @@
 **Giải thích chi tiết**:
 
 - **B - ĐÚNG**:
-    - **Amazon Aurora MySQL**: Hiệu năng cao cho heavy read.
-    - **Database Cloning**: Tính năng **Fast Cloning** (Copy-on-write) của Aurora cho phép tạo một database mới (Staging) từ production DB chỉ trong vài phút, bất kể dung lượng lớn thế nào, và **không** ảnh hưởng performance của Production (không I/O hit). Dev team có database ngay lập tức ("without delay").
+  - **Amazon Aurora MySQL**: Hiệu năng cao cho heavy read.
+  - **Database Cloning**: Tính năng **Fast Cloning** (Copy-on-write) của Aurora cho phép tạo một database mới (Staging) từ production DB chỉ trong vài phút, bất kể dung lượng lớn thế nào, và **không** ảnh hưởng performance của Production (không I/O hit). Dev team có database ngay lập tức ("without delay").
 - **A, D - SAI**: `mysqldump` gây tải nặng lên database (latency) và tốn thời gian lâu để restore.
 - **C - SAI**: Standby Instance của RDS Multi-AZ không cho phép access (nó chỉ active khi failover). Không thể dùng làm staging DB.
 
@@ -987,8 +987,8 @@
 **Giải thích chi tiết**:
 
 - **C - ĐÚNG**:
-    - **S3 Event -> SQS -> Lambda**: Kiến trúc serverless decoupled chuẩn. SQS giúp buffer request nếu traffic spike. Lambda tự động scale từ 0 lên hàng nghìn concurrent executions rồi về 0 -> Tối ưu chi phí và không overhead quản lý server.
-    - **DynamoDB**: Lưu kết quả JSON (NoSQL fit well) tốt, chế độ On-Demand phù hợp với traffic thay đổi.
+  - **S3 Event -> SQS -> Lambda**: Kiến trúc serverless decoupled chuẩn. SQS giúp buffer request nếu traffic spike. Lambda tự động scale từ 0 lên hàng nghìn concurrent executions rồi về 0 -> Tối ưu chi phí và không overhead quản lý server.
+  - **DynamoDB**: Lưu kết quả JSON (NoSQL fit well) tốt, chế độ On-Demand phù hợp với traffic thay đổi.
 - **A - SAI**: EMR (Hadoop/Spark) quá nặng nề và expensive cho xử lý "small files", "one-time simple processing".
 - **B - SAI**: EC2 quản lý cực hơn Lambda.
 - **D - SAI**: Kinesis Stream tốn chi phí theo shard giờ (dù không có data). SQS ở phương án C rẻ hơn và đơn giản hơn cho event notification pattern.
@@ -1118,8 +1118,7 @@
 
 - **Yêu cầu**: Encrypt/Decrypt certificates near real time, store data HA, secure.
 - **C - ĐÚNG**:
-    - **AWS KMS**: Dịch vụ chuyên dụng để manage key và thực hiện thao tác **Encryption/Decryption** an toàn, "near real time" qua API. Application dùng IAM Role để gọi KMS.
-    - **Amazon S3**: Lưu trữ encrypted data (certificates đã mã hóa) đảm bảo **Highly Available** (Multi-AZ) và Durability.
+  - **AWS KMS**: Dịch vụ chuyên dụng để manage key và thực hiện thao tác **Encryption/Decryption** an toàn, "near real time" qua API. Application dùng IAM Role để gọi KMS.
+  - **Amazon S3**: Lưu trữ encrypted data (certificates đã mã hóa) đảm bảo **Highly Available** (Multi-AZ) và Durability.
 - **A - SAI**: Secrets Manager để lưu secret text, không thực hiện thao tác encrypt/decrypt data arbitrary lớn hoặc file certificates phức tạp theo cách "application needs to perform operations". Tuy nhiên nếu chỉ là lưu cert thì Secrets Manager ok, nhưng đề bài nhấn mạnh "encrypt and decrypt the certificates" (action) và "store data... after encrypted". KMS + S3 linh hoạt hơn cho storage arbitrary encrypted objects.
 - **D - SAI**: EBS volume attach vào 1 instance, không phải "Highly Available storage" (shared/durable) theo nghĩa data persistence độc lập với compute instance như S3.
-
