@@ -16,6 +16,10 @@ while (indexs.length < 5) {
   }
 }
 
-console.log(indexs)
-
-fs.writeFileSync("result", indexs.map((i) => questions[i]).join("\n\n"));
+fs.writeFileSync(
+  "dist/result",
+  indexs
+    .sort()
+    .map((i) => questions[i])
+    .join("\n\n"),
+);
