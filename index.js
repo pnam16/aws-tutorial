@@ -1,20 +1,17 @@
-import fs from "fs"
-
+import fs from "fs";
 
 // read file
-const text = fs.readFileSync("SAA-C03-Question.txt", "utf-8")
+const text = fs.readFileSync("SAA-C03-Question.txt", "utf-8");
 
+let questions = text.split("\n\n");
 
-let questions = text.split("\n\n")
+questions.splice(0, 1);
 
-// console.log("text", text)
-// console.log("questions 0", questions[0])
-// console.log("questions 1", questions[1])
-// console.log("questions 2", questions[2])
-// console.log("questions 3", questions[3])
-// console.log("questions", questions)
-questions.splice(0, 1)
+const reuslt = [];
 
-console.log("questions", questions)
+Array(5).fill(null).forEach(() => {
+  const random = Math.random()
+  reuslt.push()
+});
 
-fs.writeFileSync("result", questions[0])
+fs.writeFileSync("result", questions[0]);
