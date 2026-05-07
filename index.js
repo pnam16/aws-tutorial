@@ -10,8 +10,9 @@ questions.splice(0, 1);
 const reuslt = [];
 
 Array(5).fill(null).forEach(() => {
-  const random = Math.random()
-  reuslt.push()
+  const random = Math.floor(Math.random() * reuslt.length) + 0
+  console.log(random)
+  reuslt.push(questions[random])
 });
 
-fs.writeFileSync("result", questions[0]);
+fs.writeFileSync("result", reuslt.join("\n\n"));
