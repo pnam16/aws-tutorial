@@ -13,6 +13,8 @@ let questions = text.split("\n\n")
 // console.log("questions 2", questions[2])
 // console.log("questions 3", questions[3])
 // console.log("questions", questions)
-questions.splice(0, 2)
+questions.splice(0, 1)
 
 console.log("questions", questions)
+
+fs.writeFileSync("result", questions[0])
