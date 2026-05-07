@@ -1,8 +1,9 @@
 {
-	"scripts": {
-		"lint": "markdownlint **/*.md"
-	},
-	"devDependencies": {
-		"markdownlint-cli": "^0.48.0"
-	}
+  "scripts": {
+    "start": "node index.js",
+    "lint": "markdownlint **/*.md"
+  },
+  "devDependencies": {
+    "markdownlint-cli": "^0.48.0"
+  }
 }
