@@ -1556,7 +1556,7 @@ C. Use an Auto Scaling group to launch the EC2 instances in public subnets acros
 instance in private subnets.
 D. Configure a VPC with one public subnet, one private subnet, and two NAT gateways across two Availability Zones. Deploy an Application
 Load Balancer in the public subnet.
-D. Configure a VPC with two public subnets, two private subnets, and two NAT gateways across two Availability Zones. Deploy an Application
+E. Configure a VPC with two public subnets, two private subnets, and two NAT gateways across two Availability Zones. Deploy an Application
 Load Balancer in the public subnets.
 
 Question #126 Topic 1
