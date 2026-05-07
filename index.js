@@ -1,26 +1,36 @@
 import fs from "fs";
 
-// read file
+// Config
+const PICK_COUNT = 5;
+
+// Read file
 const text = fs.readFileSync("SAA-C03-Question.txt", "utf-8");
+const questions = text.split("\n\n").slice(1);
 
-let questions = text.split("\n\n");
-
-questions.splice(0, 1);
-
-const indexs = [];
-while (indexs.length < 5) {
-  const random = Math.floor(Math.random() * questions.length) + 0;
-
-  if (!indexs.includes(random)) {
-    indexs.push(random);
-  }
+// Generate unique random indices
+const indices = new Set();
+while (indices.size < PICK_COUNT) {
+  indices.add(Math.floor(Math.random() * questions.length));
 }
 
-let result = indexs
-  .sort((a, b) => a - b)
-  .map((i) => questions[i])
+const selected = Array.from(indices).sort((a, b) => a - b);
+
+const questionNums = [];
+const result = selected
+  .map((i) => {
+    const q = questions[i];
+    const match = q.match(/#(\d+)/);
+    const num = match ? match[1] : "unknown";
+
+    questionNums.push(num);
+    return q;
+  })
   .join("\n\n");
 
-result += "\n\n" + indexs.join(":\n") + ":";
+const finalOutput =
+  result +
+  "\n\n" +
+  questionNums.join(":\n") +
+  ":";
 
-fs.writeFileSync("dist/result", result);
+fs.writeFileSync("dist/result.txt", finalOutput);
