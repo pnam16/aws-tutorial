@@ -7,12 +7,15 @@ let questions = text.split("\n\n");
 
 questions.splice(0, 1);
 
-const reuslt = [];
+const indexs = [];
+while (indexs.length < 5) {
+  const random = Math.floor(Math.random() * questions.length) + 0;
 
-Array(5).fill(null).forEach(() => {
-  const random = Math.floor(Math.random() * reuslt.length) + 0
-  console.log(random)
-  reuslt.push(questions[random])
-});
+  if (!indexs.includes(random)) {
+    indexs.push(random);
+  }
+}
 
-fs.writeFileSync("result", reuslt.join("\n\n"));
+console.log(indexs)
+
+fs.writeFileSync("result", indexs.map((i) => questions[i]).join("\n\n"));
