@@ -17,7 +17,7 @@ while (indexs.length < 5) {
 }
 
 let result = indexs
-  .sort()
+  .sort((a, b) => a - b)
   .map((i) => questions[i])
   .join("\n\n");
 
