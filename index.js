@@ -13,4 +13,8 @@ console.log("questions 1", questions[1])
 console.log("questions 2", questions[2])
 console.log("questions 3", questions[3])
 
-questions.unshift()
+// console.log("questions", questions)
+questions.shift()
+questions.shift()
+
+console.log("questions", questions)
