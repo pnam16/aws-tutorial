@@ -1,7 +1,7 @@
 import fs from "fs";
 
 // Config
-const PICK_COUNT = 5;
+const PICK_COUNT = 3;
 
 // Read file
 const text = fs.readFileSync("SAA-C03-Question.txt", "utf-8");
@@ -28,6 +28,7 @@ const result = selected
   .join("\n\n");
 
 const finalOutput =
+  "If I can’t answer or give a wrong answer, please give me the correct answer and explain it.\n" +
   result +
   "\n\n" +
   questionNums.join(":\n") +
