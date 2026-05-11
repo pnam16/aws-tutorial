@@ -2,6 +2,34 @@ import fs from "fs";
 
 // Config
 const PICK_COUNT = 1;
+const MAX_LINE_LENGTH = 80;
+
+// Wrap text to max line length
+function wrapText(text, maxLength) {
+  return text
+    .split("\n")
+    .map((line) => {
+      const words = line.split(" ");
+      const wrapped = [];
+      let current = "";
+
+      for (const word of words) {
+        if ((current + word).length + 1 > maxLength) {
+          wrapped.push(current.trim());
+          current = word + " ";
+        } else {
+          current += word + " ";
+        }
+      }
+
+      if (current.trim()) {
+        wrapped.push(current.trim());
+      }
+
+      return wrapped.join("\n");
+    })
+    .join("\n");
+}
 
 // Read file
 const text = fs.readFileSync("SAA-C03-Question.txt", "utf-8");
@@ -27,10 +55,13 @@ const result = selected
   })
   .join("\n\n");
 
-const output = [
+const outputRaw = [
   "If I can't answer or give a wrong answer, please give me the correct answer and explain it.",
   result,
   questionNums.join(":\n") + ":",
-];
+].join("\n\n");
 
-fs.writeFileSync("dist/result.txt", output.join("\n\n"));
+// Apply wrap
+const output = wrapText(outputRaw, MAX_LINE_LENGTH);
+
+fs.writeFileSync("dist/result.txt", output);
