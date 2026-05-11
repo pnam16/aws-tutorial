@@ -57,7 +57,7 @@ const promptText =
   "If I can't answer or give a wrong answer, please give me the correct answer and explain it.";
 
 const output = [
-  promptText
+  wrapText(promptText, MAX_LINE_LENGTH),
   result,
   questionNums.join(":\n") + ":",
 ];
