@@ -8,6 +8,7 @@ const MAX_LINE_LENGTH = 100;
 const wrapText = (str, limit) => {
   return str
     .split("\n")
+    .join(". ")
     .map((line) => {
       if (line.length <= limit) return line;
 
