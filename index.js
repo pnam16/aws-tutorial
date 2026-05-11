@@ -65,4 +65,3 @@ const outputRaw = [
 const output = wrapText(outputRaw, MAX_LINE_LENGTH);
 
 fs.writeFileSync("dist/result.txt", output);
-fs.writeFileSync("log.txt", output);
