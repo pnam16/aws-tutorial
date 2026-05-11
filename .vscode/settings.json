@@ -1,3 +1,7 @@
 {
-  "gitdoc.enabled": true
+  "gitdoc.enabled": true,
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
