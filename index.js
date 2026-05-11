@@ -5,7 +5,7 @@ const PICK_COUNT = 1;
 const MAX_LINE_LENGTH = 80;
 
 // Wrap text to max line length
-function wrapText(text, maxLength) {
+const wrapText = (text, maxLength) => {
   return text
     .split("\n")
     .map((line) => {
@@ -29,7 +29,7 @@ function wrapText(text, maxLength) {
       return wrapped.join("\n");
     })
     .join("\n");
-}
+};
 
 // Read file
 const text = fs.readFileSync("SAA-C03-Question.txt", "utf-8");
