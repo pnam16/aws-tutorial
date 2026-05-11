@@ -2,7 +2,7 @@ import fs from "fs";
 
 // Config
 const PICK_COUNT = 1;
-const MAX_LINE_LENGTH = 80;
+const MAX_LINE_LENGTH = 100;
 
 // Helper: Wrap text to max length without breaking words
 const wrapText = (str, limit) => {
