@@ -56,11 +56,7 @@ const result = selected
 const promptText =
   "If I can't answer or give a wrong answer, please give me the correct answer and explain it.";
 
-const output = [
-  wrapText(promptText, MAX_LINE_LENGTH),
-  result,
-  questionNums.join(":\n") + ":",
-];
+const output = [promptText, result, questionNums.join(":\n") + ":"];
 
 if (!fs.existsSync("dist")) fs.mkdirSync("dist");
 fs.writeFileSync("dist/result.txt", output.join("\n\n"));
