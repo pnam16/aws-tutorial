@@ -3,7 +3,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.formatOnSave": true,
-  "git.enableSmartCommit": true,
   "git.postCommitCommand": "sync",
   "gitdoc.ai.enabled": true,
   "gitdoc.autoCommitDelay": 30000,
