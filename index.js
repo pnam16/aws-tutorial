@@ -1,7 +1,7 @@
 import fs from "fs";
 
 // Config
-const PICK_COUNT = 5;
+const PICK_COUNT = 1;
 const MAX_LINE_LENGTH = 80;
 
 // Wrap text to max line length
